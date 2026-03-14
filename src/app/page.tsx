@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { 
-  MapPin, 
-  MonitorPlay, 
-  Home as HomeIcon, 
-  Award, 
+import {
+  MapPin,
+  MonitorPlay,
+  Home as HomeIcon,
+  Award,
   ArrowRight,
   BookOpen,
   Sparkles,
@@ -17,14 +17,14 @@ import {
 } from "lucide-react";
 import ChalkParticles from "./components/ChalkParticles";
 import { WhatsAppIcon } from "./components/WhatsAppIcon";
-import { 
-  ChalkStar, 
-  ChalkArrow, 
-  ChalkUnderline, 
-  ChalkCircle, 
-  ChalkExclamation, 
+import {
+  ChalkStar,
+  ChalkArrow,
+  ChalkUnderline,
+  ChalkCircle,
+  ChalkExclamation,
   ChalkABC,
-  ChalkSparkles 
+  ChalkSparkles
 } from "./components/ChalkDoodles";
 import ChalkEraser from "./components/ChalkEraser";
 import ChalkTray from "./components/ChalkTray";
@@ -40,7 +40,7 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  const whatsappNumber = "5493854430235"; 
+  const whatsappNumber = "5493854430235";
   const message = "Hola Martin! Me gustaría saber más sobre las clases de inglés.";
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
@@ -61,12 +61,12 @@ export default function Home() {
 
   const chalkWrite = {
     hidden: { opacity: 0, x: -10 },
-    visible: { 
-      opacity: 1, 
-      x: 0, 
-      transition: { 
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
         duration: 0.8
-      } 
+      }
     }
   };
 
@@ -94,7 +94,7 @@ export default function Home() {
           HERO SECTION 
           ===================================================== */}
       <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col items-center text-center relative z-10">
-        
+
         {/* Doodle decorations */}
         <ChalkStar className="top-20 left-[5%] hidden md:block" color="rgba(253,230,138,0.5)" delay={0.5} />
         <ChalkStar className="top-40 right-[8%] hidden md:block" color="rgba(249,168,212,0.4)" delay={1.2} />
@@ -104,7 +104,7 @@ export default function Home() {
         <ChalkCircle className="bottom-20 right-[10%] hidden md:block" delay={1.5} />
 
         {/* Badge */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
@@ -116,7 +116,7 @@ export default function Home() {
         </motion.div>
 
         {/* Hero Title with chalk write effect */}
-        <motion.h1 
+        <motion.h1
           initial="hidden"
           animate="visible"
           variants={chalkWrite}
@@ -132,7 +132,7 @@ export default function Home() {
           </span>
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -142,13 +142,13 @@ export default function Home() {
         </motion.p>
 
         {/* CTA Buttons */}
-        <motion.div 
+        <motion.div
           initial="hidden"
           animate="visible"
           variants={fadeIn}
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto"
         >
-          <motion.a 
+          <motion.a
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
@@ -165,7 +165,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             />
           </motion.a>
-          <motion.a 
+          <motion.a
             href="#modalidades"
             className="flex items-center justify-center gap-2 px-6 py-4 md:px-8 md:py-4 rounded-xl font-bold text-base md:text-lg chalk-border hover:bg-white/10 transition-all duration-300 text-white chalk-handwritten chalk-smudge-hover w-full sm:w-auto"
             whileHover={{ scale: 1.03 }}
@@ -183,21 +183,21 @@ export default function Home() {
           ABOUT / TEACHER SECTION
           ===================================================== */}
       <section className="py-20 px-6 max-w-7xl mx-auto relative z-10">
-        
+
         {/* Eraser decoration */}
         <ChalkEraser className="top-8 right-8 hidden md:block" />
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-[#243e30] p-6 sm:p-8 md:p-12 rounded-2xl shadow-2xl chalk-border relative overflow-hidden">
-          
+
           {/* Subtle chalk dust on the card */}
-          <div 
+          <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background: "radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.03) 0%, transparent 50%)",
             }}
           />
 
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -211,12 +211,12 @@ export default function Home() {
               <p className="text-xl chalk-text-blue chalk-handwritten mb-8">English Teacher</p>
               <ChalkUnderline className="-bottom-1 left-0" color="rgba(147,197,253,0.4)" delay={0.5} />
             </div>
-            
+
             <p className="text-gray-100 text-lg leading-relaxed font-medium">
               Con nivel de certificación internacional B2, ofrezco un espacio dedicado al aprendizaje efectivo del idioma inglés.
             </p>
-            
-            <motion.ul 
+
+            <motion.ul
               className="space-y-5 mt-8"
               variants={staggerContainer}
               initial="hidden"
@@ -229,12 +229,12 @@ export default function Home() {
                 { text: "Preparación integral para exámenes", icon: GraduationCap, color: "text-pink-300" },
                 { text: "Seguimiento continuo del progreso", icon: Clock, color: "text-green-300" }
               ].map((item, i) => (
-                <motion.li 
-                  key={i} 
+                <motion.li
+                  key={i}
                   variants={fadeIn}
                   className="flex items-start gap-3 md:gap-4 text-white font-medium text-base md:text-lg group"
                 >
-                  <motion.div 
+                  <motion.div
                     className={`mt-1 shrink-0 ${item.color}`}
                     whileHover={{ rotate: 20, scale: 1.2 }}
                   >
@@ -246,14 +246,14 @@ export default function Home() {
             </motion.ul>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
             className="relative h-[300px] sm:h-[400px] md:h-[450px] rounded-xl overflow-hidden border-4 border-white/20 shadow-2xl order-first md:order-last"
           >
-            <Image 
+            <Image
               src="/martin_retouched.png"
               alt="Martin Soba"
               fill
@@ -262,9 +262,9 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2f24] via-[#1a2f24]/20 to-transparent z-10" />
             <div className="relative z-20 h-full flex flex-col justify-end p-6">
-              <motion.div 
+              <motion.div
                 className="inline-flex items-center gap-3 px-4 py-3 rounded-lg bg-[#243e30]/80 backdrop-blur-md border border-white/20"
-                animate={{ 
+                animate={{
                   boxShadow: [
                     "0 0 0px rgba(253,230,138,0)",
                     "0 0 20px rgba(253,230,138,0.3)",
@@ -291,12 +291,12 @@ export default function Home() {
           MODALITIES SECTION
           ===================================================== */}
       <section id="modalidades" className="py-24 px-6 relative z-10 bg-[#16291e]">
-        
+
         {/* Top chalk line */}
         <div className="absolute top-0 left-0 right-0 h-[3px]" style={{
           background: "repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 15px, transparent 15px, transparent 25px)"
         }} />
-        
+
         {/* Bottom chalk line */}
         <div className="absolute bottom-0 left-0 right-0 h-[3px]" style={{
           background: "repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 10px, transparent 10px, transparent 20px)"
@@ -308,7 +308,7 @@ export default function Home() {
           <ChalkExclamation className="top-20 left-[3%] hidden md:block" color="rgba(249,168,212,0.5)" delay={1} />
 
           <div className="text-center mb-16">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -316,7 +316,7 @@ export default function Home() {
             >
               Modalidades de Cursado
             </motion.h2>
-            <motion.div 
+            <motion.div
               className="w-32 h-1 mx-auto rounded-full mb-6 overflow-hidden"
               initial={{ width: 0 }}
               whileInView={{ width: 128 }}
@@ -329,7 +329,7 @@ export default function Home() {
             </p>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -340,7 +340,7 @@ export default function Home() {
               {
                 icon: MapPin,
                 title: "Presencial",
-                desc: "En mi espacio dedicado en Lavalle 385. Un ambiente tipo aula, preparado para el estudio.",
+                desc: "En mi espacio dedicado en Lavalle 385. Un ambiente preparado para el estudio.",
                 color: "chalk-text-yellow",
                 borderColor: "rgba(253,230,138,0.3)",
                 doodleColor: "rgba(253,230,138,0.4)",
@@ -362,7 +362,7 @@ export default function Home() {
                 doodleColor: "rgba(249,168,212,0.4)",
               }
             ].map((modality, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 variants={fadeIn}
                 className="bg-[#243e30] p-8 rounded-xl transition-all duration-300 shadow-xl relative group chalk-smudge-hover overflow-hidden"
@@ -370,7 +370,7 @@ export default function Home() {
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
               >
                 {/* Hover glow */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 rounded-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     background: `radial-gradient(ellipse at center, ${modality.borderColor} 0%, transparent 70%)`,
@@ -379,24 +379,24 @@ export default function Home() {
                 />
 
                 {/* Icon */}
-                <motion.div 
+                <motion.div
                   className={`w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6 border border-white/30 ${modality.color}`}
                   whileHover={{ rotate: 10, scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <modality.icon className="w-8 h-8" />
                 </motion.div>
-                
+
                 <h3 className={`text-2xl font-bold mb-4 chalk-handwritten ${modality.color}`}>
                   {modality.title}
                 </h3>
                 <p className="text-white/80 leading-relaxed font-medium text-lg">{modality.desc}</p>
 
                 {/* Corner doodle */}
-                <ChalkStar 
-                  className="bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
-                  color={modality.doodleColor} 
-                  delay={0} 
+                <ChalkStar
+                  className="bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  color={modality.doodleColor}
+                  delay={0}
                 />
               </motion.div>
             ))}
@@ -452,7 +452,7 @@ export default function Home() {
           ===================================================== */}
       <section className="py-24 px-6 max-w-7xl mx-auto text-center relative z-10">
 
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -460,21 +460,21 @@ export default function Home() {
           className="bg-[#243e30] p-6 sm:p-10 md:p-16 rounded-2xl relative overflow-hidden shadow-2xl chalk-border"
         >
           {/* Background chalk dust */}
-          <div 
+          <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background: "radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%), radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.03) 0%, transparent 50%)",
             }}
           />
-          
+
           <div className="relative z-10 max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 text-white chalk-handwritten chalk-text relative inline-block">
               ¿Dónde nos encontramos?
               <ChalkUnderline className="-bottom-3 left-0 w-full" color="rgba(134,239,172,0.4)" delay={0.5} />
             </h2>
-            
+
             <div className="flex flex-col items-center justify-center mb-12 mt-6">
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-4 bg-[#1a2f24] px-4 py-4 md:px-8 md:py-5 rounded-xl border border-white/20 mb-6 md:mb-8 shadow-lg w-full max-w-sm mx-auto"
                 whileHover={{ scale: 1.02 }}
               >
@@ -484,7 +484,7 @@ export default function Home() {
                   <p className="font-bold text-lg md:text-xl text-white chalk-handwritten">Lavalle 385, Sgo Del Estero</p>
                 </div>
               </motion.div>
-              
+
               <div className="w-full max-w-3xl h-[250px] sm:h-[300px] md:h-[400px] rounded-xl overflow-hidden border-4 border-white/10 shadow-2xl relative bg-[#1a2f24] flex items-center justify-center">
                 {!mapLoaded ? (
                   <div className="flex flex-col items-center justify-center space-y-3 opacity-60">
@@ -492,13 +492,13 @@ export default function Home() {
                     <span className="chalk-handwritten text-lg text-white">Cargando mapa...</span>
                   </div>
                 ) : (
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.6995091261956!2d-64.25915502453188!3d-27.803580131014552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943b4df7a55f17f5%3A0xe987b95c3c5485c2!2sLavalle%20385%2C%20G4202%20Santiago%20del%20Estero!5e1!3m2!1ses-419!2sar!4v1773515208656!5m2!1ses-419!2sar" 
-                    width="100%" 
-                    height="100%" 
-                    style={{border:0}} 
-                    allowFullScreen={true} 
-                    loading="lazy" 
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.6995091261956!2d-64.25915502453188!3d-27.803580131014552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943b4df7a55f17f5%3A0xe987b95c3c5485c2!2sLavalle%20385%2C%20G4202%20Santiago%20del%20Estero!5e1!3m2!1ses-419!2sar!4v1773515208656!5m2!1ses-419!2sar"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Ubicación Clases de Inglés Martin Soba"
                     className="absolute inset-0"
@@ -508,7 +508,7 @@ export default function Home() {
             </div>
 
             {/* CTA Button */}
-            <motion.a 
+            <motion.a
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -567,7 +567,7 @@ export default function Home() {
         whileTap={{ scale: 0.95 }}
       >
         <WhatsAppIcon className="w-8 h-8 relative z-10" />
-        
+
         {/* Smooth CSS Sonar Pulse */}
         <div className="absolute inset-0 rounded-full border border-white/40 shadow-[0_0_15px_rgba(37,211,102,0.5)] whatsapp-pulse pointer-events-none" />
         <div className="absolute inset-0 rounded-full border border-white/20 shadow-[0_0_20px_rgba(37,211,102,0.3)] whatsapp-pulse-delayed pointer-events-none" />
