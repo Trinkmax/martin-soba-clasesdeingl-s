@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { 
@@ -29,6 +30,16 @@ import ChalkEraser from "./components/ChalkEraser";
 import ChalkTray from "./components/ChalkTray";
 
 export default function Home() {
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  useEffect(() => {
+    // Delay loading the heavy Google Maps iframe to keep initial render fast
+    const timer = setTimeout(() => {
+      setMapLoaded(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const whatsappNumber = "5493854430235"; 
   const message = "Hola Martin! Me gustaría saber más sobre las clases de inglés.";
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -54,8 +65,7 @@ export default function Home() {
       opacity: 1, 
       x: 0, 
       transition: { 
-        duration: 0.8,
-        ease: "easeOut"
+        duration: 0.8
       } 
     }
   };
@@ -475,17 +485,25 @@ export default function Home() {
                 </div>
               </motion.div>
               
-              <div className="w-full max-w-3xl h-[400px] rounded-xl overflow-hidden border-4 border-white/10 shadow-2xl relative">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.6995091261956!2d-64.25915502453188!3d-27.803580131014552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943b4df7a55f17f5%3A0xe987b95c3c5485c2!2sLavalle%20385%2C%20G4202%20Santiago%20del%20Estero!5e1!3m2!1ses-419!2sar!4v1773515208656!5m2!1ses-419!2sar" 
-                  width="100%" 
-                  height="100%" 
-                  style={{border:0}} 
-                  allowFullScreen={true} 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Ubicación Clases de Inglés Martin Soba"
-                ></iframe>
+              <div className="w-full max-w-3xl h-[400px] rounded-xl overflow-hidden border-4 border-white/10 shadow-2xl relative bg-[#1a2f24] flex items-center justify-center">
+                {!mapLoaded ? (
+                  <div className="flex flex-col items-center justify-center space-y-3 opacity-60">
+                    <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-white/80 animate-spin" />
+                    <span className="chalk-handwritten text-lg text-white">Cargando mapa...</span>
+                  </div>
+                ) : (
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.6995091261956!2d-64.25915502453188!3d-27.803580131014552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943b4df7a55f17f5%3A0xe987b95c3c5485c2!2sLavalle%20385%2C%20G4202%20Santiago%20del%20Estero!5e1!3m2!1ses-419!2sar!4v1773515208656!5m2!1ses-419!2sar" 
+                    width="100%" 
+                    height="100%" 
+                    style={{border:0}} 
+                    allowFullScreen={true} 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Ubicación Clases de Inglés Martin Soba"
+                    className="absolute inset-0"
+                  ></iframe>
+                )}
               </div>
             </div>
 
