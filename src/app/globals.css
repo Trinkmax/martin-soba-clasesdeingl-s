@@ -3,6 +3,46 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-chalk: var(--font-chalk-hand);
+}
+
+/* ============================================
+   CHALK COLOR PALETTE
+   ============================================ */
+:root {
+  --chalk-white: #fdfdfd;
+  --chalk-yellow: #fde68a;
+  --chalk-blue: #93c5fd;
+  --chalk-pink: #f9a8d4;
+  --chalk-green: #86efac;
+  --chalk-orange: #fdba74;
+  --chalk-purple: #c4b5fd;
+  --chalk-red: #fca5a5;
+  --board-dark: #1a2f24;
+  --board-mid: #243e30;
+  --board-light: #2d5040;
+}
+
+/* ============================================
+   CHALK TEXTURE & BOARD BACKGROUND
+   ============================================ */
+body {
+  background-color: var(--board-dark);
+  color: var(--chalk-white);
+}
+
+@utility chalk-bg {
+  background-color: #2F4F4F;
+  background-image:
+    /* Scratch marks */
+    url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='10' y1='30' x2='60' y2='35' stroke='rgba(255,255,255,0.02)' stroke-width='1'/%3E%3Cline x1='120' y1='80' x2='170' y2='75' stroke='rgba(255,255,255,0.015)' stroke-width='1'/%3E%3Cline x1='50' y1='150' x2='130' y2='145' stroke='rgba(255,255,255,0.02)' stroke-width='0.5'/%3E%3Cline x1='160' y1='170' x2='190' y2='168' stroke='rgba(255,255,255,0.015)' stroke-width='0.5'/%3E%3C/svg%3E"),
+    /* Noise texture */
+    url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+@utility chalk-border {
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
 }
 
 @utility text-gradient {
@@ -11,18 +51,307 @@
   background-image: linear-gradient(to right, #f8f9fa, #ced4da);
 }
 
-@utility chalk-border {
-  border: 2px dashed rgba(255, 255, 255, 0.4);
+/* ============================================
+   CHALK TEXT EFFECT
+   ============================================ */
+@utility chalk-text {
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.1),
+    0 0 10px rgba(255, 255, 255, 0.05),
+    1px 1px 2px rgba(0, 0, 0, 0.3);
+  filter: url(#chalk-texture);
+}
+
+@utility chalk-text-yellow {
+  color: var(--chalk-yellow);
+  text-shadow:
+    0 0 8px rgba(253, 230, 138, 0.3),
+    0 0 20px rgba(253, 230, 138, 0.1);
+}
+
+@utility chalk-text-blue {
+  color: var(--chalk-blue);
+  text-shadow:
+    0 0 8px rgba(147, 197, 253, 0.3),
+    0 0 20px rgba(147, 197, 253, 0.1);
+}
+
+@utility chalk-text-pink {
+  color: var(--chalk-pink);
+  text-shadow:
+    0 0 8px rgba(249, 168, 212, 0.3),
+    0 0 20px rgba(249, 168, 212, 0.1);
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+/* Chalk dust floating */
+@keyframes chalk-float {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(30px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Chalk writing stroke */
+@keyframes chalk-write {
+  0% {
+    stroke-dashoffset: var(--path-length, 1000);
+    opacity: 0.3;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Eraser sweep */
+@keyframes eraser-sweep {
+  0% {
+    transform: translateX(-10px) rotate(-2deg);
+  }
+  25% {
+    transform: translateX(10px) rotate(2deg);
+  }
+  50% {
+    transform: translateX(-10px) rotate(-1deg);
+  }
+  75% {
+    transform: translateX(10px) rotate(1deg);
+  }
+  100% {
+    transform: translateX(-10px) rotate(-2deg);
+  }
+}
+
+/* Subtle eraser wiggle */
+@keyframes eraser-wiggle {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(3px) rotate(2deg);
+  }
+  75% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+}
+
+/* Sparkle twinkle */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+/* Chalk dust poof */
+@keyframes dust-poof {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+/* Gentle chalk bounce */
+@keyframes chalk-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Wavy chalk underline */
+@keyframes chalk-underline-draw {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Chalk dust particle individual */
+.chalk-particle {
+  position: fixed;
+  width: var(--size, 3px);
+  height: var(--size, 3px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+  animation: chalk-float var(--duration, 12s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  left: var(--left, 50%);
+  bottom: -10px;
+}
+
+/* SVG chalk drawing animation */
+.chalk-draw-path {
+  stroke-dasharray: var(--path-length, 1000);
+  stroke-dashoffset: var(--path-length, 1000);
+  animation: chalk-write var(--draw-duration, 2s) ease-out forwards;
+  animation-delay: var(--draw-delay, 0s);
+  filter: url(#chalk-roughness);
+}
+
+/* Eraser */
+.chalk-eraser {
+  animation: eraser-wiggle 3s ease-in-out infinite;
+}
+
+/* Sparkle star */
+.chalk-sparkle {
+  animation: sparkle var(--sparkle-duration, 2s) ease-in-out infinite;
+  animation-delay: var(--sparkle-delay, 0s);
+}
+
+/* Board chalk tray */
+.chalk-tray {
+  background: linear-gradient(to bottom, #2a1a0e, #3d2817, #2a1a0e);
+  border-top: 3px solid #1a0f06;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Chalk piece */
+.chalk-piece {
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.chalk-piece::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+  border-radius: inherit;
+}
+
+/* Hover dust effect for cards */
+@keyframes card-dust {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1), 0 0 60px rgba(255, 255, 255, 0.05);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* Board frame */
+.board-frame {
+  border: 12px solid #3d2817;
   border-radius: 4px;
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.3),
+    4px 4px 10px rgba(0, 0, 0, 0.5),
+    -2px -2px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
-@utility chalk-bg {
-  background-color: #2F4F4F; /* Dark Slate Gray / Chalkboard */
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+.board-frame::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 2px solid #281808;
+  border-radius: 6px;
+  pointer-events: none;
 }
 
-body {
-  background-color: #1a2f24; /* Deep board green */
-  color: #fdfdfd; /* Chalk white */
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif; /* Fallback chalk-like fonts */
+/* Chalk smudge on hover */
+.chalk-smudge-hover {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.chalk-smudge-hover::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.chalk-smudge-hover:hover::before {
+  opacity: 1;
+}
+
+/* Handwritten feel for specific text */
+@utility chalk-handwritten {
+  font-family: var(--font-chalk), 'Caveat', 'Patrick Hand', 'Comic Sans MS', cursive;
+  letter-spacing: 0.5px;
+}
+
+/* Pulsing glow for CTA */
+@keyframes chalk-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.15), 0 0 45px rgba(255, 255, 255, 0.05);
+  }
+}
+
+.chalk-glow {
+  animation: chalk-glow-pulse 3s ease-in-out infinite;
+}
+
+/* Section divider chalk line */
+.chalk-divider {
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.4) 0px,
+    rgba(255, 255, 255, 0.4) 8px,
+    transparent 8px,
+    transparent 12px,
+    rgba(255, 255, 255, 0.2) 12px,
+    rgba(255, 255, 255, 0.2) 18px,
+    transparent 18px,
+    transparent 24px
+  );
+  position: relative;
+}
+
+.chalk-divider::after {
+  content: '';
+  position: absolute;
+  inset: -2px 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0px,
+    rgba(255, 255, 255, 0.05) 15px,
+    transparent 15px,
+    transparent 20px
+  );
 }

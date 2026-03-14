@@ -10,8 +10,23 @@ import {
   Award, 
   ArrowRight,
   BookOpen,
-  Users
+  Sparkles,
+  GraduationCap,
+  Clock,
+  Star,
 } from "lucide-react";
+import ChalkParticles from "./components/ChalkParticles";
+import { 
+  ChalkStar, 
+  ChalkArrow, 
+  ChalkUnderline, 
+  ChalkCircle, 
+  ChalkExclamation, 
+  ChalkABC,
+  ChalkSparkles 
+} from "./components/ChalkDoodles";
+import ChalkEraser from "./components/ChalkEraser";
+import ChalkTray from "./components/ChalkTray";
 
 export default function Home() {
   const whatsappNumber = "5493854430235"; 
@@ -33,29 +48,78 @@ export default function Home() {
     }
   };
 
+  const chalkWrite = {
+    hidden: { opacity: 0, x: -10 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      transition: { 
+        duration: 0.8,
+        ease: "easeOut"
+      } 
+    }
+  };
+
   return (
     <main className="min-h-screen relative overflow-hidden bg-[#1a2f24] text-[#fdfdfd] chalk-bg">
 
-      {/* Hero Section */}
+      {/* Chalk Particles Overlay */}
+      <ChalkParticles />
+
+      {/* SVG Filter for chalk texture */}
+      <svg className="absolute w-0 h-0" aria-hidden="true">
+        <defs>
+          <filter id="chalk-texture">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+          <filter id="chalk-roughness">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+          </filter>
+        </defs>
+      </svg>
+
+      {/* =====================================================
+          HERO SECTION 
+          ===================================================== */}
       <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col items-center text-center relative z-10">
+        
+        {/* Doodle decorations */}
+        <ChalkStar className="top-20 left-[5%] hidden md:block" color="rgba(253,230,138,0.5)" delay={0.5} />
+        <ChalkStar className="top-40 right-[8%] hidden md:block" color="rgba(249,168,212,0.4)" delay={1.2} />
+        <ChalkArrow className="top-16 right-[15%] hidden md:block" delay={1.8} />
+        <ChalkExclamation className="top-24 left-[12%] hidden md:block" delay={2} />
+        <ChalkABC className="bottom-10 left-[8%] hidden md:block" delay={2.5} />
+        <ChalkCircle className="bottom-20 right-[10%] hidden md:block" delay={1.5} />
+
+        {/* Badge */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-md chalk-border bg-white/5 mb-8 text-sm font-medium text-white shadow-xl"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-md chalk-border bg-white/5 mb-8 text-sm font-medium text-white shadow-xl relative"
         >
-          <Award className="w-5 h-5" />
-          <span className="font-bold tracking-wide">Certificación Internacional Nivel B2</span>
+          <Award className="w-5 h-5 text-yellow-300" />
+          <span className="font-bold tracking-wide chalk-handwritten">Certificación Internacional Nivel B2</span>
+          <ChalkSparkles className="w-full h-full top-0 left-0" />
         </motion.div>
 
+        {/* Hero Title with chalk write effect */}
         <motion.h1 
           initial="hidden"
           animate="visible"
-          variants={fadeIn}
-          className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight"
+          variants={chalkWrite}
+          className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight chalk-handwritten relative"
         >
-          Domina el Inglés <br className="hidden md:block" />
-          con <span className="underline decoration-wavy decoration-white/50 underline-offset-8">Confianza</span>
+          <span className="chalk-text">Domina el Inglés</span> <br className="hidden md:block" />
+          <span className="relative inline-block">
+            con{" "}
+            <span className="chalk-text-yellow relative">
+              Confianza
+              <ChalkUnderline className="-bottom-3 left-0 w-full" color="rgba(253,230,138,0.5)" delay={1} />
+            </span>
+          </span>
         </motion.h1>
 
         <motion.p 
@@ -64,71 +128,120 @@ export default function Home() {
           variants={fadeIn}
           className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-medium"
         >
-           Ayudando a estudiantes a romper la barrera del idioma con clases personalizadas y dinámicas.
+          Ayudando a estudiantes a romper la barrera del idioma con clases personalizadas y dinámicas.
         </motion.p>
 
+        {/* CTA Buttons */}
         <motion.div 
           initial="hidden"
           animate="visible"
           variants={fadeIn}
           className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
         >
-          <a 
+          <motion.a 
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 bg-[#E5F9E0] text-[#1a2f24] px-8 py-4 rounded-xl font-bold text-lg hover:bg-white transition-all duration-300 transform hover:-translate-y-1 shadow-[4px_4px_0px_rgba(255,255,255,0.2)]"
+            className="flex items-center justify-center gap-3 bg-[#E5F9E0] text-[#1a2f24] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform shadow-[4px_4px_0px_rgba(255,255,255,0.2)] chalk-glow relative overflow-hidden group"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.98 }}
           >
             <MessageCircle className="w-6 h-6" />
-            Escribime por WhatsApp
-          </a>
-          <a 
+            <span className="chalk-handwritten">Escribime por WhatsApp</span>
+            <motion.div
+              className="absolute inset-0 bg-white/20"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "100%" }}
+              transition={{ duration: 0.5 }}
+            />
+          </motion.a>
+          <motion.a 
             href="#modalidades"
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-lg chalk-border hover:bg-white/10 transition-all duration-300 text-white"
+            className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-lg chalk-border hover:bg-white/10 transition-all duration-300 text-white chalk-handwritten chalk-smudge-hover"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
           >
             Ver Modalidades
-          </a>
+          </motion.a>
         </motion.div>
       </section>
 
-      {/* About Section */}
+      {/* Chalk divider */}
+      <div className="chalk-divider max-w-4xl mx-auto" />
+
+      {/* =====================================================
+          ABOUT / TEACHER SECTION
+          ===================================================== */}
       <section className="py-20 px-6 max-w-7xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center bg-[#243e30] p-8 md:p-12 rounded-2xl shadow-2xl chalk-border">
+        
+        {/* Eraser decoration */}
+        <ChalkEraser className="top-8 right-8 hidden md:block" />
+
+        <div className="grid md:grid-cols-2 gap-12 items-center bg-[#243e30] p-8 md:p-12 rounded-2xl shadow-2xl chalk-border relative overflow-hidden">
+          
+          {/* Subtle chalk dust on the card */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.03) 0%, transparent 50%)",
+            }}
+          />
+
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="space-y-6"
+            className="space-y-6 relative z-10"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 border-b-2 border-dashed border-white/20 pb-4">
-              Martin Soba, English Teacher
-            </h2>
+            <div className="relative inline-block">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 chalk-handwritten chalk-text">
+                Martin Soba
+              </h2>
+              <p className="text-xl chalk-text-blue chalk-handwritten mb-8">English Teacher</p>
+              <ChalkUnderline className="-bottom-1 left-0" color="rgba(147,197,253,0.4)" delay={0.5} />
+            </div>
+            
             <p className="text-gray-100 text-lg leading-relaxed font-medium">
               Con nivel de certificación internacional B2, ofrezco un espacio dedicado al aprendizaje efectivo del idioma inglés.
             </p>
-            <ul className="space-y-5 mt-8">
+            
+            <motion.ul 
+              className="space-y-5 mt-8"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               {[
-                "Atención personalizada exhaustiva",
-                "Metodología práctica, activa y conversacional",
-                "Preparación integral para exámenes",
-                "Seguimiento continuo del progreso"
+                { text: "Atención personalizada exhaustiva", icon: Star, color: "text-yellow-300" },
+                { text: "Metodología práctica y conversacional", icon: Sparkles, color: "text-blue-300" },
+                { text: "Preparación integral para exámenes", icon: GraduationCap, color: "text-pink-300" },
+                { text: "Seguimiento continuo del progreso", icon: Clock, color: "text-green-300" }
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-4 text-white font-medium text-lg">
-                  <div className="mt-1">
-                    <BookOpen className="w-5 h-5 text-white/80" />
-                  </div>
-                  {item}
-                </li>
+                <motion.li 
+                  key={i} 
+                  variants={fadeIn}
+                  className="flex items-start gap-4 text-white font-medium text-lg group"
+                >
+                  <motion.div 
+                    className={`mt-1 ${item.color}`}
+                    whileHover={{ rotate: 20, scale: 1.2 }}
+                  >
+                    <item.icon className="w-5 h-5" />
+                  </motion.div>
+                  <span className="group-hover:text-white/90 transition-colors">{item.text}</span>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </motion.div>
+
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="relative h-[450px] rounded-xl overflow-hidden glass border-4 border-white/20 shadow-2xl"
+            className="relative h-[450px] rounded-xl overflow-hidden border-4 border-white/20 shadow-2xl"
           >
             <Image 
               src="/martin_retouched.png"
@@ -139,22 +252,71 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2f24] via-[#1a2f24]/20 to-transparent z-10" />
             <div className="relative z-20 h-full flex flex-col justify-end p-6">
-              <div className="inline-flex p-3 rounded-lg bg-[#243e30]/80 backdrop-blur-md mb-2 border border-white/20">
-                <Award className="w-6 h-6 text-yellow-300" />
-              </div>
-              <h3 className="text-2xl font-bold text-white shadow-sm">Profesor Certificado B2</h3>
+              <motion.div 
+                className="inline-flex items-center gap-3 px-4 py-3 rounded-lg bg-[#243e30]/80 backdrop-blur-md border border-white/20"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 0px rgba(253,230,138,0)",
+                    "0 0 20px rgba(253,230,138,0.3)",
+                    "0 0 0px rgba(253,230,138,0)",
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <Award className="w-6 h-6 text-yellow-300 shrink-0" />
+                <h3 className="text-xl font-bold text-white chalk-handwritten">Profesor Certificado B2</h3>
+              </motion.div>
             </div>
+
+            {/* Corner doodle */}
+            <ChalkStar className="top-4 right-4 z-30" color="rgba(255,255,255,0.3)" delay={1} />
           </motion.div>
         </div>
       </section>
 
-      {/* Modalities Section */}
-      <section id="modalidades" className="py-24 px-6 relative z-10 bg-[#16291e] border-y-4 border-dashed border-white/10">
-        <div className="max-w-7xl mx-auto">
+      {/* Chalk Tray */}
+      <ChalkTray />
+
+      {/* =====================================================
+          MODALITIES SECTION
+          ===================================================== */}
+      <section id="modalidades" className="py-24 px-6 relative z-10 bg-[#16291e]">
+        
+        {/* Top chalk line */}
+        <div className="absolute top-0 left-0 right-0 h-[3px]" style={{
+          background: "repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 15px, transparent 15px, transparent 25px)"
+        }} />
+        
+        {/* Bottom chalk line */}
+        <div className="absolute bottom-0 left-0 right-0 h-[3px]" style={{
+          background: "repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 10px, transparent 10px, transparent 20px)"
+        }} />
+
+        <div className="max-w-7xl mx-auto relative">
+          {/* Doodle decorations */}
+          <ChalkArrow className="top-0 right-[5%] hidden md:block" color="rgba(253,230,138,0.4)" delay={0.5} />
+          <ChalkExclamation className="top-20 left-[3%] hidden md:block" color="rgba(249,168,212,0.5)" delay={1} />
+
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white chalk-text">Modalidades de Cursado</h2>
-            <div className="w-32 h-1 bg-white/40 mx-auto rounded-full mb-6"></div>
-            <p className="text-white/80 text-xl max-w-2xl mx-auto font-medium">Tres formas de aprender adaptadas a tus necesidades.</p>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold mb-6 text-white chalk-handwritten chalk-text"
+            >
+              Modalidades de Cursado
+            </motion.h2>
+            <motion.div 
+              className="w-32 h-1 mx-auto rounded-full mb-6 overflow-hidden"
+              initial={{ width: 0 }}
+              whileInView={{ width: 128 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3 }}
+              style={{ background: "rgba(255,255,255,0.4)" }}
+            />
+            <p className="text-white/80 text-xl max-w-2xl mx-auto font-medium">
+              Tres formas de aprender adaptadas a tus necesidades.
+            </p>
           </div>
 
           <motion.div 
@@ -169,36 +331,117 @@ export default function Home() {
                 icon: MapPin,
                 title: "Presencial",
                 desc: "En mi espacio dedicado en Lavalle 385. Un ambiente tipo aula, preparado para el estudio.",
+                color: "chalk-text-yellow",
+                borderColor: "rgba(253,230,138,0.3)",
+                doodleColor: "rgba(253,230,138,0.4)",
               },
               {
                 icon: HomeIcon,
                 title: "A Domicilio",
                 desc: "Voy a tu casa para que aprendas en la comodidad de tu hogar con atención 100% exclusiva.",
+                color: "chalk-text-blue",
+                borderColor: "rgba(147,197,253,0.3)",
+                doodleColor: "rgba(147,197,253,0.4)",
               },
               {
                 icon: MonitorPlay,
                 title: "Online",
                 desc: "Clases virtuales interactivas con la misma exigencia, usando herramientas digitales.",
+                color: "chalk-text-pink",
+                borderColor: "rgba(249,168,212,0.3)",
+                doodleColor: "rgba(249,168,212,0.4)",
               }
             ].map((modality, idx) => (
               <motion.div 
                 key={idx}
                 variants={fadeIn}
-                className="bg-[#243e30] p-8 rounded-xl chalk-border hover:-translate-y-2 transition-transform duration-300 shadow-xl"
+                className="bg-[#243e30] p-8 rounded-xl transition-all duration-300 shadow-xl relative group chalk-smudge-hover overflow-hidden"
+                style={{ border: `2px dashed ${modality.borderColor}` }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
               >
-                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6 text-white border border-white/30">
+                {/* Hover glow */}
+                <motion.div 
+                  className="absolute inset-0 rounded-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background: `radial-gradient(ellipse at center, ${modality.borderColor} 0%, transparent 70%)`,
+                    opacity: 0.1
+                  }}
+                />
+
+                {/* Icon */}
+                <motion.div 
+                  className={`w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6 border border-white/30 ${modality.color}`}
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <modality.icon className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white">{modality.title}</h3>
+                </motion.div>
+                
+                <h3 className={`text-2xl font-bold mb-4 chalk-handwritten ${modality.color}`}>
+                  {modality.title}
+                </h3>
                 <p className="text-white/80 leading-relaxed font-medium text-lg">{modality.desc}</p>
+
+                {/* Corner doodle */}
+                <ChalkStar 
+                  className="bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+                  color={modality.doodleColor} 
+                  delay={0} 
+                />
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Location / CTA Bottom */}
+      {/* Chalk divider */}
+      <div className="chalk-divider max-w-4xl mx-auto" />
+
+      {/* =====================================================
+          AGES SECTION
+          ===================================================== */}
+      <section className="py-20 px-6 max-w-7xl mx-auto relative z-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white chalk-handwritten chalk-text mb-4">
+            Edades
+          </h2>
+          <p className="text-white/80 text-xl font-medium">Para estudiantes de <span className="chalk-text-yellow chalk-handwritten text-2xl">11</span> a <span className="chalk-text-yellow chalk-handwritten text-2xl">19</span> años</p>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="flex flex-wrap justify-center gap-4"
+        >
+          {Array.from({ length: 9 }, (_, i) => 11 + i).map((age) => (
+            <motion.div
+              key={age}
+              variants={fadeIn}
+              className="w-16 h-16 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center chalk-handwritten text-2xl font-bold chalk-smudge-hover hover:border-yellow-300/50 transition-colors duration-300"
+              whileHover={{ scale: 1.15, rotate: 5 }}
+            >
+              <span className="chalk-text">{age}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Doodle decorations */}
+        <ChalkABC className="bottom-4 right-[10%] hidden md:block" delay={1} />
+      </section>
+
+      {/* =====================================================
+          LOCATION / CTA SECTION
+          ===================================================== */}
       <section className="py-24 px-6 max-w-7xl mx-auto text-center relative z-10">
+
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -206,20 +449,33 @@ export default function Home() {
           variants={fadeIn}
           className="bg-[#243e30] p-10 md:p-16 rounded-2xl relative overflow-hidden shadow-2xl chalk-border"
         >
+          {/* Background chalk dust */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%), radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.03) 0%, transparent 50%)",
+            }}
+          />
           
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">¿Dónde nos encontramos?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white chalk-handwritten chalk-text relative inline-block">
+              ¿Dónde nos encontramos?
+              <ChalkUnderline className="-bottom-3 left-0 w-full" color="rgba(134,239,172,0.4)" delay={0.5} />
+            </h2>
             
-            <div className="flex flex-col items-center justify-center mb-12">
-              <div className="flex items-center gap-4 bg-[#1a2f24] px-8 py-5 rounded-xl border border-white/20 mb-8 inline-block shadow-lg">
-                <MapPin className="text-white w-8 h-8" />
+            <div className="flex flex-col items-center justify-center mb-12 mt-6">
+              <motion.div 
+                className="flex items-center gap-4 bg-[#1a2f24] px-8 py-5 rounded-xl border border-white/20 mb-8 shadow-lg"
+                whileHover={{ scale: 1.02 }}
+              >
+                <MapPin className="text-green-300 w-8 h-8" />
                 <div className="text-left">
                   <p className="text-white/70 font-medium">Ubicación</p>
-                  <p className="font-bold text-xl text-white">Lavalle 385, Sgo Del Estero</p>
+                  <p className="font-bold text-xl text-white chalk-handwritten">Lavalle 385, Sgo Del Estero</p>
                 </div>
-              </div>
+              </motion.div>
               
-              <div className="w-full max-w-3xl h-[400px] rounded-xl overflow-hidden border-4 border-white/10 shadow-2xl">
+              <div className="w-full max-w-3xl h-[400px] rounded-xl overflow-hidden border-4 border-white/10 shadow-2xl relative">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.6995091261956!2d-64.25915502453188!3d-27.803580131014552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943b4df7a55f17f5%3A0xe987b95c3c5485c2!2sLavalle%20385%2C%20G4202%20Santiago%20del%20Estero!5e1!3m2!1ses-419!2sar!4v1773515208656!5m2!1ses-419!2sar" 
                   width="100%" 
@@ -233,29 +489,54 @@ export default function Home() {
               </div>
             </div>
 
-            <a 
+            {/* CTA Button */}
+            <motion.a 
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex flex-col items-center justify-center group mt-8"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <div className="flex items-center gap-3 bg-white text-[#1a2f24] px-12 py-6 rounded-xl font-black text-2xl hover:scale-105 transition-transform duration-300 mb-3 shadow-[8px_8px_0px_rgba(255,255,255,0.2)]">
+              <div className="flex items-center gap-3 bg-white text-[#1a2f24] px-12 py-6 rounded-xl font-black text-2xl transition-transform duration-300 mb-3 shadow-[8px_8px_0px_rgba(255,255,255,0.2)] chalk-glow chalk-handwritten relative overflow-hidden">
                 <MessageCircle className="w-8 h-8 text-[#25D366]" />
                 Contactar a Martin
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.6 }}
+                />
               </div>
-              <span className="text-white/90 font-bold tracking-wider">¡Asegurá tu lugar hoy!</span>
-            </a>
+              <span className="text-white/90 font-bold tracking-wider chalk-handwritten">¡Asegurá tu lugar hoy!</span>
+            </motion.a>
           </div>
+
+          {/* Corner doodles */}
+          <ChalkStar className="top-6 right-6 hidden md:block" color="rgba(253,230,138,0.3)" delay={0.5} />
+          <ChalkArrow className="bottom-8 left-8 hidden md:block" color="rgba(134,239,172,0.3)" delay={1} />
         </motion.div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-10 text-center text-white/50 text-sm font-medium border-t-2 border-dashed border-white/10 bg-[#16291e]">
-        <p>© {new Date().getFullYear()} Martin Soba English Classes. Todos los derechos reservados.</p>
+      {/* Chalk Tray */}
+      <ChalkTray />
+
+      {/* =====================================================
+          FOOTER
+          ===================================================== */}
+      <footer className="py-10 text-center text-white/50 text-sm font-medium bg-[#16291e] relative">
+        <div className="absolute top-0 left-0 right-0 h-[2px]" style={{
+          background: "repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 8px, transparent 8px, transparent 16px)"
+        }} />
+        <p className="chalk-handwritten text-base">
+          © {new Date().getFullYear()} Martin Soba English Classes. Todos los derechos reservados.
+        </p>
       </footer>
 
-      {/* Sticky FAB */}
+      {/* =====================================================
+          FLOATING WHATSAPP FAB
+          ===================================================== */}
       <motion.a
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -264,8 +545,23 @@ export default function Home() {
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group border-4 border-white/20"
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.95 }}
       >
         <MessageCircle className="w-8 h-8 relative z-10" />
+        {/* Pulse ring */}
+        <motion.div
+          className="absolute inset-0 rounded-full border-2 border-[#25D366]"
+          animate={{
+            scale: [1, 1.5, 1.5],
+            opacity: [0.5, 0, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeOut",
+          }}
+        />
       </motion.a>
     </main>
   );
