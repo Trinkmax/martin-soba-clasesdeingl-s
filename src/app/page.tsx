@@ -567,19 +567,10 @@ export default function Home() {
         whileTap={{ scale: 0.95 }}
       >
         <WhatsAppIcon className="w-8 h-8 relative z-10" />
-        {/* Pulse ring */}
-        <motion.div
-          className="absolute inset-0 rounded-full border-2 border-[#25D366]"
-          animate={{
-            scale: [1, 1.5, 1.5],
-            opacity: [0.5, 0, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeOut",
-          }}
-        />
+        
+        {/* Smooth CSS Sonar Pulse */}
+        <div className="absolute inset-0 rounded-full border border-white/40 shadow-[0_0_15px_rgba(37,211,102,0.5)] whatsapp-pulse pointer-events-none" />
+        <div className="absolute inset-0 rounded-full border border-white/20 shadow-[0_0_20px_rgba(37,211,102,0.3)] whatsapp-pulse-delayed pointer-events-none" />
       </motion.a>
     </main>
   );
