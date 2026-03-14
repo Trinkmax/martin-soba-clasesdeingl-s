@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@utility text-gradient {
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #f8f9fa, #ced4da);
+}
+
+@utility chalk-border {
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+}
+
+@utility chalk-bg {
+  background-color: #2F4F4F; /* Dark Slate Gray / Chalkboard */
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+body {
+  background-color: #1a2f24; /* Deep board green */
+  color: #fdfdfd; /* Chalk white */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif; /* Fallback chalk-like fonts */
+}
