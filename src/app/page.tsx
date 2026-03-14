@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { 
-  MessageCircle, 
   MapPin, 
   MonitorPlay, 
   Home as HomeIcon, 
@@ -17,6 +16,7 @@ import {
   Star,
 } from "lucide-react";
 import ChalkParticles from "./components/ChalkParticles";
+import { WhatsAppIcon } from "./components/WhatsAppIcon";
 import { 
   ChalkStar, 
   ChalkArrow, 
@@ -156,7 +156,7 @@ export default function Home() {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
-            <MessageCircle className="w-6 h-6" />
+            <WhatsAppIcon className="w-6 h-6 text-[#25D366]" />
             <span className="chalk-handwritten">Escribime por WhatsApp</span>
             <motion.div
               className="absolute inset-0 bg-white/20"
@@ -517,7 +517,7 @@ export default function Home() {
               whileTap={{ scale: 0.98 }}
             >
               <div className="flex items-center gap-3 bg-white text-[#1a2f24] px-12 py-6 rounded-xl font-black text-2xl transition-transform duration-300 mb-3 shadow-[8px_8px_0px_rgba(255,255,255,0.2)] chalk-glow chalk-handwritten relative overflow-hidden">
-                <MessageCircle className="w-8 h-8 text-[#25D366]" />
+                <WhatsAppIcon className="w-8 h-8 text-[#25D366]" />
                 Contactar a Martin
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                 <motion.div
@@ -566,7 +566,7 @@ export default function Home() {
         whileHover={{ scale: 1.15 }}
         whileTap={{ scale: 0.95 }}
       >
-        <MessageCircle className="w-8 h-8 relative z-10" />
+        <WhatsAppIcon className="w-8 h-8 relative z-10" />
         {/* Pulse ring */}
         <motion.div
           className="absolute inset-0 rounded-full border-2 border-[#25D366]"

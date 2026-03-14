@@ -13,7 +13,8 @@ export function ChalkStar({ className = "", color = "rgba(253,230,138,0.6)", del
   return (
     <motion.svg
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ delay, duration: 0.3 }}
       className={`absolute pointer-events-none ${className}`}
       width="40" height="40" viewBox="0 0 40 40"
@@ -27,7 +28,8 @@ export function ChalkStar({ className = "", color = "rgba(253,230,138,0.6)", del
         strokeLinejoin="round"
         fill="none"
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 1 }}
+        whileInView={{ pathLength: 1, opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 1.5, delay: delay + 0.3, ease: "easeOut" }}
       />
     </motion.svg>
@@ -39,7 +41,8 @@ export function ChalkArrow({ className = "", color = "rgba(147,197,253,0.6)", de
   return (
     <motion.svg
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ delay, duration: 0.3 }}
       className={`absolute pointer-events-none ${className}`}
       width="80" height="40" viewBox="0 0 80 40"
@@ -52,7 +55,8 @@ export function ChalkArrow({ className = "", color = "rgba(147,197,253,0.6)", de
         strokeLinecap="round"
         fill="none"
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 1.2, delay: delay + 0.3, ease: "easeOut" }}
       />
       <motion.path
@@ -63,7 +67,8 @@ export function ChalkArrow({ className = "", color = "rgba(147,197,253,0.6)", de
         strokeLinejoin="round"
         fill="none"
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.4, delay: delay + 1.5, ease: "easeOut" }}
       />
     </motion.svg>
@@ -75,7 +80,8 @@ export function ChalkUnderline({ className = "", color = "rgba(249,168,212,0.5)"
   return (
     <motion.svg
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ delay, duration: 0.3 }}
       className={`absolute pointer-events-none ${className}`}
       width="200" height="15" viewBox="0 0 200 15"
@@ -89,7 +95,8 @@ export function ChalkUnderline({ className = "", color = "rgba(249,168,212,0.5)"
         strokeLinecap="round"
         fill="none"
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 1.5, delay: delay + 0.2, ease: "easeOut" }}
       />
     </motion.svg>
@@ -101,7 +108,8 @@ export function ChalkCircle({ className = "", color = "rgba(134,239,172,0.4)", d
   return (
     <motion.svg
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ delay, duration: 0.3 }}
       className={`absolute pointer-events-none ${className}`}
       width="60" height="60" viewBox="0 0 60 60"
@@ -114,7 +122,8 @@ export function ChalkCircle({ className = "", color = "rgba(134,239,172,0.4)", d
         strokeLinecap="round"
         fill="none"
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 1.8, delay: delay + 0.3, ease: "easeOut" }}
         style={{ transform: "rotate(-5deg)", transformOrigin: "center" }}
       />
@@ -127,7 +136,8 @@ export function ChalkExclamation({ className = "", color = "rgba(253,186,116,0.6
   return (
     <motion.svg
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ delay, duration: 0.3 }}
       className={`absolute pointer-events-none ${className}`}
       width="20" height="40" viewBox="0 0 20 40"
@@ -139,14 +149,16 @@ export function ChalkExclamation({ className = "", color = "rgba(253,186,116,0.6
         strokeWidth="3"
         strokeLinecap="round"
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay: delay + 0.3, ease: "easeOut" }}
       />
       <motion.circle
         cx="10" cy="34" r="2.5"
         fill={color}
         initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.3, delay: delay + 0.9 }}
       />
     </motion.svg>
@@ -158,7 +170,8 @@ export function ChalkABC({ className = "", color = "rgba(196,181,253,0.5)", dela
   return (
     <motion.svg
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ delay, duration: 0.3 }}
       className={`absolute pointer-events-none ${className}`}
       width="90" height="30" viewBox="0 0 90 30"
@@ -173,7 +186,8 @@ export function ChalkABC({ className = "", color = "rgba(196,181,253,0.5)", dela
         strokeLinejoin="round"
         fill="none"
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 1, delay: delay + 0.3, ease: "easeOut" }}
       />
       {/* B */}
@@ -185,7 +199,8 @@ export function ChalkABC({ className = "", color = "rgba(196,181,253,0.5)", dela
         strokeLinejoin="round"
         fill="none"
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 1, delay: delay + 1, ease: "easeOut" }}
       />
       {/* C */}
@@ -196,7 +211,8 @@ export function ChalkABC({ className = "", color = "rgba(196,181,253,0.5)", dela
         strokeLinecap="round"
         fill="none"
         initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
+        whileInView={{ pathLength: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 1, delay: delay + 1.7, ease: "easeOut" }}
       />
     </motion.svg>
