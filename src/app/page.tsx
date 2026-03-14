@@ -120,9 +120,9 @@ export default function Home() {
           initial="hidden"
           animate="visible"
           variants={chalkWrite}
-          className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight chalk-handwritten relative"
+          className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-4 md:mb-6 leading-tight chalk-handwritten relative"
         >
-          <span className="chalk-text">Domina el Inglés</span> <br className="hidden md:block" />
+          <span className="chalk-text">Domina el Inglés</span> <br />
           <span className="relative inline-block">
             con{" "}
             <span className="chalk-text-yellow relative">
@@ -136,7 +136,7 @@ export default function Home() {
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-medium"
+          className="text-base sm:text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto font-medium"
         >
           Ayudando a estudiantes a romper la barrera del idioma con clases personalizadas y dinámicas.
         </motion.p>
@@ -146,17 +146,17 @@ export default function Home() {
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto"
         >
           <motion.a 
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 bg-[#E5F9E0] text-[#1a2f24] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform shadow-[4px_4px_0px_rgba(255,255,255,0.2)] chalk-glow relative overflow-hidden group"
+            className="flex items-center justify-center gap-3 bg-[#E5F9E0] text-[#1a2f24] px-6 py-4 md:px-8 md:py-4 rounded-xl font-bold text-base md:text-lg transition-all duration-300 transform shadow-[4px_4px_0px_rgba(255,255,255,0.2)] chalk-glow relative overflow-hidden group w-full sm:w-auto"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
-            <WhatsAppIcon className="w-6 h-6 text-[#25D366]" />
+            <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6 text-[#25D366]" />
             <span className="chalk-handwritten">Escribime por WhatsApp</span>
             <motion.div
               className="absolute inset-0 bg-white/20"
@@ -167,7 +167,7 @@ export default function Home() {
           </motion.a>
           <motion.a 
             href="#modalidades"
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-lg chalk-border hover:bg-white/10 transition-all duration-300 text-white chalk-handwritten chalk-smudge-hover"
+            className="flex items-center justify-center gap-2 px-6 py-4 md:px-8 md:py-4 rounded-xl font-bold text-base md:text-lg chalk-border hover:bg-white/10 transition-all duration-300 text-white chalk-handwritten chalk-smudge-hover w-full sm:w-auto"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -187,7 +187,7 @@ export default function Home() {
         {/* Eraser decoration */}
         <ChalkEraser className="top-8 right-8 hidden md:block" />
 
-        <div className="grid md:grid-cols-2 gap-12 items-center bg-[#243e30] p-8 md:p-12 rounded-2xl shadow-2xl chalk-border relative overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-[#243e30] p-6 sm:p-8 md:p-12 rounded-2xl shadow-2xl chalk-border relative overflow-hidden">
           
           {/* Subtle chalk dust on the card */}
           <div 
@@ -204,8 +204,8 @@ export default function Home() {
             variants={fadeIn}
             className="space-y-6 relative z-10"
           >
-            <div className="relative inline-block">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 chalk-handwritten chalk-text">
+            <div className="relative inline-block mt-4 md:mt-0">
+              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-1 md:mb-2 chalk-handwritten chalk-text">
                 Martin Soba
               </h2>
               <p className="text-xl chalk-text-blue chalk-handwritten mb-8">English Teacher</p>
@@ -232,10 +232,10 @@ export default function Home() {
                 <motion.li 
                   key={i} 
                   variants={fadeIn}
-                  className="flex items-start gap-4 text-white font-medium text-lg group"
+                  className="flex items-start gap-3 md:gap-4 text-white font-medium text-base md:text-lg group"
                 >
                   <motion.div 
-                    className={`mt-1 ${item.color}`}
+                    className={`mt-1 shrink-0 ${item.color}`}
                     whileHover={{ rotate: 20, scale: 1.2 }}
                   >
                     <item.icon className="w-5 h-5" />
@@ -251,7 +251,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="relative h-[450px] rounded-xl overflow-hidden border-4 border-white/20 shadow-2xl"
+            className="relative h-[300px] sm:h-[400px] md:h-[450px] rounded-xl overflow-hidden border-4 border-white/20 shadow-2xl order-first md:order-last"
           >
             <Image 
               src="/martin_retouched.png"
@@ -312,7 +312,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold mb-6 text-white chalk-handwritten chalk-text"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-white chalk-handwritten chalk-text"
             >
               Modalidades de Cursado
             </motion.h2>
@@ -324,7 +324,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.3 }}
               style={{ background: "rgba(255,255,255,0.4)" }}
             />
-            <p className="text-white/80 text-xl max-w-2xl mx-auto font-medium">
+            <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto font-medium">
               Tres formas de aprender adaptadas a tus necesidades.
             </p>
           </div>
@@ -435,7 +435,7 @@ export default function Home() {
             <motion.div
               key={age}
               variants={fadeIn}
-              className="w-16 h-16 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center chalk-handwritten text-2xl font-bold chalk-smudge-hover hover:border-yellow-300/50 transition-colors duration-300"
+              className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center chalk-handwritten text-xl sm:text-2xl font-bold chalk-smudge-hover hover:border-yellow-300/50 transition-colors duration-300"
               whileHover={{ scale: 1.15, rotate: 5 }}
             >
               <span className="chalk-text">{age}</span>
@@ -457,7 +457,7 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeIn}
-          className="bg-[#243e30] p-10 md:p-16 rounded-2xl relative overflow-hidden shadow-2xl chalk-border"
+          className="bg-[#243e30] p-6 sm:p-10 md:p-16 rounded-2xl relative overflow-hidden shadow-2xl chalk-border"
         >
           {/* Background chalk dust */}
           <div 
@@ -468,24 +468,24 @@ export default function Home() {
           />
           
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white chalk-handwritten chalk-text relative inline-block">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 text-white chalk-handwritten chalk-text relative inline-block">
               ¿Dónde nos encontramos?
               <ChalkUnderline className="-bottom-3 left-0 w-full" color="rgba(134,239,172,0.4)" delay={0.5} />
             </h2>
             
             <div className="flex flex-col items-center justify-center mb-12 mt-6">
               <motion.div 
-                className="flex items-center gap-4 bg-[#1a2f24] px-8 py-5 rounded-xl border border-white/20 mb-8 shadow-lg"
+                className="flex items-center gap-4 bg-[#1a2f24] px-4 py-4 md:px-8 md:py-5 rounded-xl border border-white/20 mb-6 md:mb-8 shadow-lg w-full max-w-sm mx-auto"
                 whileHover={{ scale: 1.02 }}
               >
-                <MapPin className="text-green-300 w-8 h-8" />
+                <MapPin className="text-green-300 w-6 h-6 md:w-8 md:h-8 shrink-0" />
                 <div className="text-left">
-                  <p className="text-white/70 font-medium">Ubicación</p>
-                  <p className="font-bold text-xl text-white chalk-handwritten">Lavalle 385, Sgo Del Estero</p>
+                  <p className="text-white/70 font-medium text-sm md:text-base">Ubicación</p>
+                  <p className="font-bold text-lg md:text-xl text-white chalk-handwritten">Lavalle 385, Sgo Del Estero</p>
                 </div>
               </motion.div>
               
-              <div className="w-full max-w-3xl h-[400px] rounded-xl overflow-hidden border-4 border-white/10 shadow-2xl relative bg-[#1a2f24] flex items-center justify-center">
+              <div className="w-full max-w-3xl h-[250px] sm:h-[300px] md:h-[400px] rounded-xl overflow-hidden border-4 border-white/10 shadow-2xl relative bg-[#1a2f24] flex items-center justify-center">
                 {!mapLoaded ? (
                   <div className="flex flex-col items-center justify-center space-y-3 opacity-60">
                     <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-white/80 animate-spin" />
@@ -512,14 +512,14 @@ export default function Home() {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex flex-col items-center justify-center group mt-8"
+              className="inline-flex flex-col items-center justify-center group mt-6 md:mt-8 w-full sm:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="flex items-center gap-3 bg-white text-[#1a2f24] px-12 py-6 rounded-xl font-black text-2xl transition-transform duration-300 mb-3 shadow-[8px_8px_0px_rgba(255,255,255,0.2)] chalk-glow chalk-handwritten relative overflow-hidden">
-                <WhatsAppIcon className="w-8 h-8 text-[#25D366]" />
+              <div className="flex items-center justify-center gap-2 md:gap-3 bg-white text-[#1a2f24] px-6 py-4 md:px-12 md:py-6 rounded-xl font-black text-xl md:text-2xl transition-transform duration-300 mb-3 shadow-[8px_8px_0px_rgba(255,255,255,0.2)] chalk-glow chalk-handwritten relative overflow-hidden w-full sm:w-auto">
+                <WhatsAppIcon className="w-6 h-6 md:w-8 md:h-8 text-[#25D366] shrink-0" />
                 Contactar a Martin
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform shrink-0" />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                   initial={{ x: "-100%" }}
